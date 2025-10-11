@@ -1,0 +1,29 @@
+<%- include('../partials/header') %>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">Select Subject and Date</h1>
+                <form action="/attendance" method="POST">
+                    <div class="mb-3">
+                        <label for="subjectId" class="form-label">Subject</label>
+                        <select name="subjectId" id="subjectId" class="form-select" required>
+                            <option value="">-- Select a Subject --</option>
+                            <% subjects.forEach(subject => { %>
+                                <option value="<%= subject._id %>"><%= subject.name %> (Sem: <%= subject.semester %>)</option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date" class="form-label">Date</label>
+                        <input type="date" class="form-control" id="date" name="date" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Fetch Students</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

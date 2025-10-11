@@ -1,0 +1,34 @@
+<%- include('../partials/header') %>
+
+<h1>Attendance Defaulters List (<75%)</h1>
+
+<% if (defaulters.length > 0) { %>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>Roll Number</th>
+                    <th>Student Name</th>
+                    <th>Subject</th>
+                    <th>Attendance Percentage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% defaulters.forEach(record => { %>
+                    <tr class="table-danger">
+                        <td><%= record.studentDetails.rollNumber %></td>
+                        <td><%= record.studentDetails.name %></td>
+                        <td><%= record.subjectDetails.name %></td>
+                        <td><strong><%= record.percentage.toFixed(2) %>%</strong></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+<% } else { %>
+    <div class="alert alert-success">
+        No students with attendance less than 75% were found.
+    </div>
+<% } %>
+
+<%- include('../partials/footer') %>

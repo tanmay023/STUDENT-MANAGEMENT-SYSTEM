@@ -1,0 +1,25 @@
+<%- include('../partials/header') %>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">View Marks Report</h1>
+                <form action="/marks/report" method="POST">
+                    <div class="mb-3">
+                        <label for="subjectId" class="form-label">Select Subject to View Report</label>
+                        <select name="subjectId" id="subjectId" class="form-select" required>
+                            <option value="">-- Select a Subject --</option>
+                            <% subjects.forEach(subject => { %>
+                                <option value="<%= subject._id %>"><%= subject.name %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Generate Report</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

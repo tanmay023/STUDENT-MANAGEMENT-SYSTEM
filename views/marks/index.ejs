@@ -1,0 +1,40 @@
+<%- include('../partials/header') %>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">Select Subject for Marks Entry</h1>
+                <form action="/marks" method="POST">
+                    <div class="mb-3">
+                        <label for="subjectId" class="form-label">Subject</label>
+                        <select name="subjectId" id="subjectId" class="form-select" required>
+                            <option value="">-- Select a Subject --</option>
+                            <% subjects.forEach(subject => { %>
+                                <option value="<%= subject._id %>"><%= subject.name %> (Sem: <%= subject.semester %>)</option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="examType" class="form-label">Exam Type</label>
+                        <select name="examType" id="examType" class="form-select" required>
+                            <option value="">-- Select Exam Type --</option>
+                            <option value="Insem">Insem</option>
+                            <option value="Endsem">Endsem</option>
+                            <option value="CIE I">CIE I</option>
+                            <option value="CIE II">CIE II</option>
+                            <option value="CIE III">CIE III</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="totalMarks" class="form-label">Total Marks</label>
+                        <input type="number" class="form-control" id="totalMarks" name="totalMarks" placeholder="e.g., 100" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Fetch Students</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

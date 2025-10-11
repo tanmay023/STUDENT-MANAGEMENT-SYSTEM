@@ -1,0 +1,37 @@
+<%- include('../partials/header') %>
+
+<h1>Attendance Report</h1>
+<div class="card mb-4">
+    <div class="card-body">
+        <p class="card-text mb-1"><strong>Subject:</strong> <%= subject.name %></p>
+        <p class="card-text"><strong>Date:</strong> <%= new Date(date).toLocaleDateString() %></p>
+    </div>
+</div>
+
+<% if (records.length > 0) { %>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>Roll Number</th>
+                    <th>Student Name</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% records.forEach(record => { %>
+                    <tr>
+                        <td><%= record.studentId.rollNumber %></td>
+                        <td><%= record.studentId.name %></td>
+                        <td><%= record.status %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+<% } else { %>
+    <div class="alert alert-info">No attendance records found for this subject on this date.</div>
+<% } %>
+<a href="/attendance/report" class="btn btn-secondary mt-3">Back to Report Selection</a>
+
+<%- include('../partials/footer') %>

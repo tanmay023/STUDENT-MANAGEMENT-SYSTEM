@@ -1,0 +1,36 @@
+<%- include('../partials/header') %>
+
+<h1>Marks Report for <%= subject.name %></h1>
+
+<% if (Object.keys(marksByExam).length > 0) { %>
+    <% for (const examType in marksByExam) { %>
+        <h3 class="mt-4"><%= examType %></h3>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Roll Number</th>
+                        <th>Student Name</th>
+                        <th>Marks Obtained</th>
+                        <th>Total Marks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% marksByExam[examType].forEach(record => { %>
+                        <tr>
+                            <td><%= record.studentId.rollNumber %></td>
+                            <td><%= record.studentId.name %></td>
+                            <td><%= record.marksObtained %></td>
+                            <td><%= record.totalMarks %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    <% } %>
+<% } else { %>
+    <div class="alert alert-info">No marks records found for this subject.</div>
+<% } %>
+<a href="/marks/report" class="btn btn-secondary mt-3">Back to Report Selection</a>
+
+<%- include('../partials/footer') %>

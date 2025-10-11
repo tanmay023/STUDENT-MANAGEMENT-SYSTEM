@@ -1,0 +1,66 @@
+<%- include('../partials/header') %>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h1 class="card-title">Welcome, <%= student.name %>!</h1>
+        <p class="card-text">This is your personal dashboard where you can track your attendance and marks.</p>
+    </div>
+</div>
+
+<h3 class="mt-4">My Attendance Summary</h3>
+<% if (Object.keys(attendanceSummary).length > 0) { %>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>Subject</th>
+                    <th>Classes Attended</th>
+                    <th>Total Classes</th>
+                    <th>Percentage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(const subjectName in attendanceSummary) { %>
+                    <tr>
+                        <td><%= subjectName %></td>
+                        <td><%= attendanceSummary[subjectName].present %></td>
+                        <td><%= attendanceSummary[subjectName].total %></td>
+                        <td><%= attendanceSummary[subjectName].percentage %>%</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+<% } else { %>
+    <div class="alert alert-info">No attendance records found.</div>
+<% } %>
+
+<h3 class="mt-4">My Marks</h3>
+<% if (marks.length > 0) { %>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>Subject</th>
+                    <th>Exam</th>
+                    <th>Marks Obtained</th>
+                    <th>Total Marks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% marks.forEach(record => { %>
+                    <tr>
+                        <td><%= record.subjectId.name %></td>
+                        <td><%= record.examType %></td>
+                        <td><%= record.marksObtained %></td>
+                        <td><%= record.totalMarks %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+<% } else { %>
+    <div class="alert alert-info">No marks records found.</div>
+<% } %>
+
+<%- include('../partials/footer') %>
