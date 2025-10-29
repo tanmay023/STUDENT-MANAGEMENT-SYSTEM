@@ -54,8 +54,10 @@ app.use('/subjects', subjectRoutes);
 app.use('/attendance', attendanceRoutes);
 app.use('/marks', marksRoutes);
 app.use('/reports', reportRoutes);
-app.use('/student', studentDashboardRoutes);
+
 app.use('/', authRoutes);
+app.use('/student', studentDashboardRoutes);
+
 
 app.listen(8080, () => {
     console.log("Server started on port 8080");
